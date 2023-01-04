@@ -52,7 +52,7 @@ mod maximum_units_1710 {
         // Sort the array by the number of units in each type of box
         let mut box_array = box_types.clone();
         box_array.sort_by(|a, b| b[1].cmp(&a[1]));
-        println!("The sorted vecotr is: {:#?}", box_array);
+        // println!("The sorted vecotr is: {:#?}", box_array);
 
         // Count the number of units until the truck is fulfilled.
 
@@ -92,5 +92,15 @@ mod tests {
         let result = maximum_units(box_types, truck_size);
 
         assert_eq!(result, 8);
+    }
+
+    #[test]
+    fn test_example_2() {
+        let box_types = vec![vec![5, 10], vec![2, 5], vec![4, 7], vec![3, 9]];
+        let truck_size = 10;
+
+        let result = maximum_units(box_types, truck_size);
+
+        assert_eq!(result, 91);
     }
 }
