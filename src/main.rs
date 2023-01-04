@@ -1,3 +1,5 @@
+mod solutions;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, this program is made to test the Leet Code solutions.");
 }
