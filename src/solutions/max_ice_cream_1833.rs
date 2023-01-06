@@ -41,9 +41,31 @@
 //!
 
 mod max_ice_cream_1833 {
-    ///
+    /// In order to buy as meny ice creams as posible we need to buy first the ice-creams from the
+    /// places where it costs less. Steps:
+    /// 1. Order the costs of the ice-creams
+    /// 2. Take the ice-creams until you reach the coins limit.
 
-    pub fn max_ice_cream(costs: Vec<i32>, coins: i32) -> i32 {}
+    pub fn max_ice_cream(costs: Vec<i32>, coins: i32) -> i32 {
+        let mut costs = costs;
+        let mut coins = coins;
+        let mut result = 0;
+
+        // Order the costs of the ice-creams.
+        costs.sort();
+
+        // Take all the posible ice-creams until the limit is reached.
+        for c  in costs {
+            if c <= coins {
+                coins -= c;
+                result += 1;
+            } else {
+                break;
+            }
+        }
+
+        result
+    }
 }
 
 #[cfg(test)]
