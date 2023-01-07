@@ -9,7 +9,7 @@
 //! travel around the circuit once in the clockwise direction, otherwise return -1. If there exists
 //! a solution, it is guaranteed to be unique
 //!
-//!  
+//!
 //!
 //! Example 1:
 //!
@@ -36,7 +36,7 @@
 //! You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
 //! Therefore, you can't travel around the circuit once no matter where you start.
 //!
-//!  
+//!
 //!
 //! Constraints:
 //!
@@ -46,8 +46,34 @@
 //!
 
 mod can_complete_circuit_134 {
+    /// At any point having some gas in the tank, is a better start instead of having an empty
+    /// tank. Thanks to this, the following steps solve the problem.
+    /// 1. Scan the gas and cost arrays at the same time and calculate the gas amount in the tank.
+    /// 2. If at any point the gas is below zero, reset the index start and continue.
+    /// 3. If after two iterations the loop was completed, the index corresponds to the best start.
+    
     pub fn can_complete_circuit(gas: Vec<i32>, cost: Vec<i32>) -> i32 {
+        let mut tank = 0;
+        let mut index = 0;
+        let mut trips = 0;
 
+        for rounds in 0..2 {
+            for i in 0..gas.len() {
+                tank += gas[i] - cost[i];
+                if tank < 0 {
+                    index = i as i32 + 1;
+                    tank = 0;
+                    trips = 0;
+                } else if trips < gas.len(){
+                    trips += 1;
+                }
+            }
+        }
+
+        if trips != gas.len() {
+            index = -1;
+        }
+        index
     }
 }
 
@@ -57,17 +83,17 @@ mod tests {
 
     #[test]
     fn test_example_1() {
-        let gas = vec![1,2,3,4,5];
-        let cost = vec![3,4,5,1,2];
+        let gas = vec![1, 2, 3, 4, 5];
+        let cost = vec![3, 4, 5, 1, 2];
 
-        assert_eq!(3, can_complete_circuit(gas, cost);
+        assert_eq!(3, can_complete_circuit(gas, cost));
     }
 
     #[test]
     fn test_example_2() {
-        let gas = vec![2,3,4];
-        let cost = vec![3,4,3];
+        let gas = vec![2, 3, 4];
+        let cost = vec![3, 4, 3];
 
-        assert_eq!(-1, can_complete_circuit(gas, cost);
+        assert_eq!(-1, can_complete_circuit(gas, cost));
     }
 }
