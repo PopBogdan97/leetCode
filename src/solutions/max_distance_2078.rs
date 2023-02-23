@@ -45,8 +45,53 @@
 //!
 
 mod max_distance_2078 {
-    pub fn max_distance(colors: Vec<i32>) -> i32 {
+    /// Greedy algorithm:
+    /// 1. Iterate over each variable in the array.
+    /// 2. Iterate over each variable after the current one.
+    /// 3. If the variables are different, calculate the distance between them.
+    /// 4. Update the max distance if the new distance is greater than the current one.
+    /// 5. Return the max distance.
+    ///
+    /// More efficient algorithm:
+    /// 1. Start from the first element of the array.
+    /// 2. Iterate over the array until you find a different color from the last element in the array
+    ///    and store the distance
+    /// 3. Start from the last element in the array.
+    /// 4. Iterate over the array until you find a different color from the first element in the
+    ///       array and store the distance.
+    /// 5. Return the max distance between the two distances.
 
+    pub fn max_distance(colors: Vec<i32>) -> i32 {
+        // let mut max_dif = 0;
+        // for i in 0..colors.len() {
+        //     for j in i + 1..colors.len() {
+        //         if colors[i] != colors[j] {
+        //             max_dif = max_dif.max((j - i) as i32);
+        //         }
+        //     }
+        // }
+        //
+        // max_dif
+        // Alternative solution:
+
+        let mut max_start = 0;
+        let mut max_end = 0;
+
+        for i in 0..colors.len() {
+            if colors[i] != colors[colors.len() - 1] {
+                max_start = colors.len() - 1 - i;
+                break;
+            }
+        }
+
+        for i in (0..colors.len()).rev() {
+            if colors[i] != colors[0] {
+                max_end = i;
+                break;
+            }
+        }
+
+        max_start.max(max_end) as i32
     }
 }
 

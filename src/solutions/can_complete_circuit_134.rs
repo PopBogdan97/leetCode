@@ -57,7 +57,7 @@ mod can_complete_circuit_134 {
         let mut index = 0;
         let mut trips = 0;
 
-        for rounds in 0..2 {
+        for _rounds in 0..2 {
             for i in 0..gas.len() {
                 tank += gas[i] - cost[i];
                 if tank < 0 {
