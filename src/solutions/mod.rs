@@ -6,6 +6,7 @@ mod can_complete_circuit_134;
 mod candy_135;
 mod fruit_into_basket_904;
 mod max_distance_2078;
+mod find_error_nums_645;
 
 mod solutions {
      
