@@ -36,7 +36,40 @@
 //!
 
 mod backspace_compare_844 {
-    pub fn backspace_compare(s: String, t: String) -> bool {}
+    /// 1. Iterate over the strings and create two new strings that do not contain backspaces.
+    /// 2. Compare the two new strings.
+    pub fn backspace_compare(s: String, t: String) -> bool {
+        let mut s_new = String::new();
+        let mut t_new = String::new();
+
+        for i in 0..s.len() {
+            if s.chars().nth(i).unwrap() == '#' {
+                s_new.pop();
+            } else {
+                s_new.push(s.chars().nth(i).unwrap());
+            }
+        }
+
+        for i in 0..t.len() {
+            if t.chars().nth(i).unwrap() == '#' {
+                t_new.pop();
+            } else {
+                t_new.push(t.chars().nth(i).unwrap());
+            }
+        }
+
+        if s_new.len() != t_new.len() {
+            return false;
+        }
+
+        for i in 0..s_new.len() {
+            if s_new.chars().nth(i).unwrap() != t_new.chars().nth(i).unwrap() {
+                return false;
+            }
+        }
+
+        true
+    }
 }
 
 #[cfg(test)]
