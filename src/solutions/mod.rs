@@ -7,6 +7,7 @@ mod candy_135;
 mod fruit_into_basket_904;
 mod max_distance_2078;
 mod find_error_nums_645;
+mod backspace_compare_844;
 
 mod solutions {
      
